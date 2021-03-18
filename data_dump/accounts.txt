@@ -1,0 +1,35 @@
+/* 1 */
+{
+    "_id" : ObjectId("6053682be424ce4b3c6a270c"),
+    "balance" : 48500,
+    "accountType" : "Savings",
+    "user" : ObjectId("6053682be424ce4b3c6a270b"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("6053682fe424ce4b3c6a270e"),
+    "balance" : 9000,
+    "accountType" : "Savings",
+    "user" : ObjectId("6053682fe424ce4b3c6a270d"),
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("60536836e424ce4b3c6a2710"),
+    "balance" : 0,
+    "accountType" : "Savings",
+    "user" : ObjectId("60536836e424ce4b3c6a270f"),
+    "__v" : 0
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("60537010403f74202635319c"),
+    "balance" : 1200,
+    "accountType" : "Current",
+    "user" : ObjectId("6053682be424ce4b3c6a270b"),
+    "__v" : 0
+}
