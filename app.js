@@ -41,7 +41,7 @@ app.post("/register", async (req, res) => {
     console.log(err);
     return res.status(400).json({
       error: "Unable to create user",
-      errorCode:400
+      errorCode: 400,
     });
   }
 });
@@ -51,28 +51,30 @@ app.post("/transfer", async (req, res) => {
   try {
     let srcAccount = await Account.findById(fromAccountId);
     let destAccount = await Account.findById(toAccountId);
-    console.log(srcAccount + " "  + destAccount.user)
-    if(String(srcAccount.user) == String(destAccount.user)){
-      return res.status(400).json({
-        error:"Cannot transfer to own acccount",
-        errorCode:400
 
-      })
+    if (String(srcAccount.user) == String(destAccount.user)) {
+      return res.status(400).json({
+        error: "Cannot transfer to own acccount",
+        errorCode: 400,
+      });
     }
     if (srcAccount.balance >= amount) {
-
-      
-      srcAccount = await Account.findByIdAndUpdate(srcAccount, {
-        $inc: {
-          balance: -amount,
+      srcAccount = await Account.findByIdAndUpdate(
+        srcAccount,
+        {
+          $inc: {
+            balance: -amount,
+          },
         },
-      });
+        { returnOriginal: false }
+      );
 
       destAccount = await Account.findByIdAndUpdate(destAccount, {
         $inc: {
           balance: amount,
         },
       });
+      console.log("srcAcc", srcAccount);
 
       let destUserId = destAccount.user;
       let destUserData = await Account.aggregate([
@@ -100,11 +102,9 @@ app.post("/transfer", async (req, res) => {
     } else {
       return res.status(400).json({
         error: "Not enough balance",
-        errorCode:400
+        errorCode: 400,
       });
     }
-
-  
   } catch (err) {
     console.log(err);
     return res.status(400).json({
